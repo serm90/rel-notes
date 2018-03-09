@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="../css/main.css" th:href="@{/css/main.css}"/>
+<script type="text/javascript"   th:src="@{/js/text.js}"></script>
+<head>
+    <title>Change server change list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<p>Build change list</p>
+<form action="#" th:action="@{/changes}" th:object="${form}" method="POST">
+     start&nbsp;version&nbsp;<select  th:field="*{from}"  >
+         <!--<option value="">Select Version</option>-->
+         <option th:each="version : ${versions}" th:value="${version.tag}"  th:text="${version.name}" ></option>
+     </select>&nbsp;
+    until&nbsp;version&nbsp;<select   th:field="*{to}"  >
+        <!--<option value="">Select Version</option>-->
+        <option th:each="version : ${versions}" th:value="${version.tag}" th:text="${version.name}" ></option>
+    </select>
+    <p><input type="submit" value="Get change list" /></p>
+</form>
+
+    <table th:if="${form.changes != null}" class="chgtable">
+        <thead>
+          <tr>
+              <th th:text="'All changes between '+${form.from.name}+' and '+${form.to.name}" ></th>
+              <!--<th></th>-->
+          </tr>
+        </thead>
+        <tbody>
+            <tr th:each="change : ${form.changes}" >
+                <td  th:utext="${change.fullMessage}" ></td>
+                <!--<td  class="tdlink" ><a th:href="${change.gerritLink.href}" th:text="${change.gerritLink.lable}"></a> </td>-->
+            </tr>
+        </tbody>
+    </table>
+
+
+</body>
+</html>

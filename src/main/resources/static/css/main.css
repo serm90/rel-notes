@@ -1,0 +1,19 @@
+.chgtable {
+    table-layout: auto;
+    width: 100%;
+    border-collapse:separate;
+    border-spacing:1em;
+}
+.tdlink{
+    width: fit-content;
+}
+ /*td.wrapped {*/
+
+    /*!* css-3 *!*/
+    /*white-space: -o-pre-wrap;*/
+    /*word-wrap: break-word;*/
+    /*white-space: pre-wrap;*/
+    /*white-space: -moz-pre-wrap;*/
+    /*white-space: -pre-wrap;*/
+
+/*}*/
