@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting server changes</title>
+    <title th:text="#{index.title}">Getting server changes</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p>Hello!</p>
-<p>Get your changes <a href="/changes">here</a></p>
+<p th:text="#{index.hello}">Hello!</p>
+<p th:text="#{index.get}">Get your changes<a href="/changes">here</a></p>
 </body>
 </html>
