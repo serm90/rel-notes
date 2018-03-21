@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login page</title>
+    <title th:text="#{login.title}"></title>
+
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/language.js}"></script>
 <body>
-<h1>Login page</h1>
-<p th:if="${error}" class="error">Wrong user or password</p>
-<p th:if="${logout}" class="logout">You have been logged out</p>
+<h1 th:text="#{login.page}"></h1>
+<p th:if="${error}" class="error" th:text="#{login.error}"></p>
+<p th:if="${logout}" class="logout" th:text="#{login.logout}"></p>
 <form th:action="@{/login}" method="post">
-    <label for="username">Username</label>:
+    <label for="username" th:text="#{username}">User login</label>:
     <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
-    <label for="password">Password</label>:
+    <label for="password" th:text="#{password}">Password</label>:
     <input type="password" id="password" name="password" /> <br />
-    <input type="submit" value="Log in" />
+    <input type="submit" th:value="#{btn.login}" />
+    <span th:text="#{lang.change}"></span>:
+    <select id="locales">
+        <option value=""></option>
+        <option value="en" th:text="#{lang.en}"></option>
+        <option value="ru" th:text="#{lang.ru}"></option>
+    </select>
 </form>
 </body>
 </html>

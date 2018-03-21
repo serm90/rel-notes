@@ -3,22 +3,22 @@
 <link rel="stylesheet" type="text/css" href="../css/main.css" th:href="@{/css/main.css}"/>
 <script type="text/javascript"   th:src="@{/js/text.js}"></script>
 <head>
-    <title>Change server change list</title>
+    <title th:text="#{changes.title}">Change server change list</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
-<p>Build change list</p>
+<p th:text="#{changes.build}">Build change list</p>
 <form action="#" th:action="@{/changes}" th:object="${form}" method="POST">
-     start&nbsp;version&nbsp;<select  th:field="*{from}"  >
+    <nobr th:text="#{changes.startv}"></nobr> <select  th:field="*{from}"  >
          <!--<option value="">Select Version</option>-->
          <option th:each="version : ${versions}" th:value="${version.tag}"  th:text="${version.name}" ></option>
      </select>&nbsp;
-    until&nbsp;version&nbsp;<select   th:field="*{to}"  >
+    <nobr th:text="#{changes.untilv}"></nobr><select   th:field="*{to}"  >
         <!--<option value="">Select Version</option>-->
         <option th:each="version : ${versions}" th:value="${version.tag}" th:text="${version.name}" ></option>
     </select>
-    <p><input type="submit" value="Get change list" /></p>
+    <p><input type="submit" th:value="#{changes.getchangelist}"/></p>
 </form>
 
     <table th:if="${form.changes != null}" class="chgtable">
