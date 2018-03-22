@@ -1,4 +1,4 @@
-package com.pfsoft.rnotes;
+package com.pfsoft.rnotes.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

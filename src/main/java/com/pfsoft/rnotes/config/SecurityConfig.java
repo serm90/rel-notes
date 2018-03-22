@@ -1,5 +1,6 @@
-package com.pfsoft.rnotes;
+package com.pfsoft.rnotes.config;
 
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,13 +21,12 @@ import java.util.Locale;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//    @Autowired
-//    private UserService userService;
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/css/**","/js/**","/resources/**","/login**", "/h2**").permitAll()
+                .antMatchers("/css/**", "/js/**", "/resources/**", "/login**", "/h2**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
@@ -40,11 +40,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+////                .userDetailsService(userService)
+////                .passwordEncoder(bcryptPasswordEncoder());
+//                .inMemoryAuthentication().withUser("user").password("user").roles("ADMIN");
+
+    @Autowired
+    DataSource dataSource;
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-//                .userDetailsService(userService)
-//                .passwordEncoder(bcryptPasswordEncoder());
-        .inMemoryAuthentication().withUser("user").password("user").roles("ADMIN");
+        auth.jdbcAuthentication().dataSource(dataSource);
     }
 }
